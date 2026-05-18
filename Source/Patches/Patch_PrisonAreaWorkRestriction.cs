@@ -61,23 +61,29 @@ namespace RimPrison.Patches
                         continue;
 
                     var method = type.GetMethod("HasJobOnThing",
-                        BindingFlags.Public | BindingFlags.Instance);
+                        BindingFlags.Public | BindingFlags.Instance,
+                        null,
+                        new[] { typeof(Pawn), typeof(Thing), typeof(bool) },
+                        null);
                     if (method != null && method.ReturnType == typeof(bool))
                         yield return method;
                 }
             }
         }
 
-        static void Postfix(WorkGiver_Scanner __instance, Pawn pawn, Thing t, ref bool __result)
+        static void Postfix(WorkGiver_Scanner __instance, Pawn __0, Thing __1, ref bool __result)
         {
+            Pawn pawn = __0;
+            Thing targetThing = __1;
+
             if (!__result) return;
-            if (pawn == null || t == null) return;
+            if (pawn == null || targetThing == null) return;
             if (!PrisonAreaWorkRestrictionHelper.ShouldBlock(pawn, __instance.def.workType))
                 return;
 
             var area = PrisonAreaWorkRestrictionHelper.CachedPrisonArea(pawn.Map);
             if (area == null) return;
-            if (!area[t.Position]) return;
+            if (!area[targetThing.Position]) return;
 
             __result = false;
         }
@@ -100,15 +106,21 @@ namespace RimPrison.Patches
                         continue;
 
                     var method = type.GetMethod("HasJobOnCell",
-                        BindingFlags.Public | BindingFlags.Instance);
+                        BindingFlags.Public | BindingFlags.Instance,
+                        null,
+                        new[] { typeof(Pawn), typeof(IntVec3), typeof(bool) },
+                        null);
                     if (method != null && method.ReturnType == typeof(bool))
                         yield return method;
                 }
             }
         }
 
-        static void Postfix(WorkGiver_Scanner __instance, Pawn pawn, IntVec3 c, ref bool __result)
+        static void Postfix(WorkGiver_Scanner __instance, Pawn __0, IntVec3 __1, ref bool __result)
         {
+            Pawn pawn = __0;
+            IntVec3 cell = __1;
+
             if (!__result) return;
             if (pawn == null) return;
             if (!PrisonAreaWorkRestrictionHelper.ShouldBlock(pawn, __instance.def.workType))
@@ -116,7 +128,7 @@ namespace RimPrison.Patches
 
             var area = PrisonAreaWorkRestrictionHelper.CachedPrisonArea(pawn.Map);
             if (area == null) return;
-            if (!area[c]) return;
+            if (!area[cell]) return;
 
             __result = false;
         }

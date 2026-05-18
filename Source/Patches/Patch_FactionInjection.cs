@@ -39,11 +39,7 @@ namespace RimPrison.Patches
 
                     foreach (var method in type.GetMethods(BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly))
                     {
-                        if (method.Name == "PotentialWorkThingsGlobal" ||
-                            method.Name == "HasJobOnThing" ||
-                            method.Name == "ShouldSkip" ||
-                            method.Name == "JobOnThing" ||
-                            method.Name == "JobOnCell")
+                        if (IsScannerMethod(method))
                         {
                             yield return method;
                         }
@@ -83,6 +79,38 @@ namespace RimPrison.Patches
                 {
                     yield return codes[i];
                 }
+            }
+        }
+
+        // Only patch methods whose parameter types match the vanilla
+        // WorkGiver_Scanner signatures. Some mods add overloads or reuse
+        // the same method names with different parameters, which breaks the
+        // transpiler's assumption that ldarg.1 is the pawn argument.
+        private static bool IsScannerMethod(MethodInfo method)
+        {
+            var parameters = method.GetParameters();
+            switch (method.Name)
+            {
+                case "PotentialWorkThingsGlobal":
+                    return parameters.Length == 1
+                        && parameters[0].ParameterType == typeof(Pawn);
+                case "HasJobOnThing":
+                case "JobOnThing":
+                    return parameters.Length == 3
+                        && parameters[0].ParameterType == typeof(Pawn)
+                        && parameters[1].ParameterType == typeof(Thing)
+                        && parameters[2].ParameterType == typeof(bool);
+                case "ShouldSkip":
+                    return parameters.Length == 2
+                        && parameters[0].ParameterType == typeof(Pawn)
+                        && parameters[1].ParameterType == typeof(bool);
+                case "JobOnCell":
+                    return parameters.Length == 3
+                        && parameters[0].ParameterType == typeof(Pawn)
+                        && parameters[1].ParameterType == typeof(IntVec3)
+                        && parameters[2].ParameterType == typeof(bool);
+                default:
+                    return false;
             }
         }
     }
