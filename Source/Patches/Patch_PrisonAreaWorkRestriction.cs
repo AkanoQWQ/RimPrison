@@ -35,7 +35,7 @@ namespace RimPrison.Patches
 
         public static bool ShouldBlock(Pawn pawn, WorkTypeDef workType)
         {
-            if (!pawn.IsColonist && !pawn.IsColonyMech) return false;
+            if ((!pawn.IsColonist || pawn.IsPrisonerOfColony) && !pawn.IsColonyMech) return false;
             var disabled = RimPrisonMod.Settings.DisabledWorkInPrisonArea;
             // [TODO] maybe null guard here
             if (disabled.Count == 0) return false;
