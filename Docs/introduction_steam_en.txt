@@ -8,7 +8,7 @@ Prisoner schedules, labor, recreation, meals, wages, and debt system
 Food and apparel whitelists with batch management
 Prison suppression system, mental breaks, prison breaks, and turret deterrence rules
 
-Early Release 1.0.7, supports backward compatibility with most features now complete. The current version is fully playable. However, it is still strongly recommended to save your game before using it. Compatible with the new "self-reliance" expansion(not published yet, old expansion version is not compatible).
+Early Release 1.0.8, supports backward compatibility with most features now complete. The current version is fully playable. However, it is still strongly recommended to save your game before using it. Compatible with the new "self-reliance" expansion(not published yet, old expansion version is not compatible).
 
 Not compatible with the original RimPrison (Reset) mod — a fresh save is required. Any log messages containing "RimPrison.Reset" are caused by leftover data from the old version. Simply remove the old RimPrison (or old expansion) first (or start a brand new save).
 
