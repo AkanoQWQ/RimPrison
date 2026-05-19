@@ -19,7 +19,7 @@ namespace RimPrison.Patches
         {
             if (__result != null) return;
             if (priorityLevel != AutofeedMode.Urgent) return;
-            if (RimPrisonMod.Settings.BabyFeedingIsolation && mom.IsColonist) return;
+            if (RimPrisonMod.Settings.BabyFeedingIsolation && mom.IsColonist && !mom.IsPrisonerOfColony) return;
             if (mom.MapHeld == null) return;
 
             __result = SearchPrisonerBaby(mom, out food);
