@@ -17,6 +17,7 @@ namespace RimPrison
         public int DebtHarvestIntervalDays = 1;
         public bool DoorAccessEnabled;
         public bool RestrictColonistWorkInPrisonArea;
+        public bool AllowColonistRecreationInPrisonArea;
         public bool BabyFeedingIsolation = true;
 
         // Per-work-type wage multiplier, keyed by workTypeDef.defName.
@@ -53,6 +54,7 @@ namespace RimPrison
             Scribe_Values.Look(ref DoorAccessEnabled, "DoorAccessEnabled", true);
             // Keep old key for backward compat, no longer used in UI
             Scribe_Values.Look(ref RestrictColonistWorkInPrisonArea, "RestrictColonistWorkInPrisonArea", false);
+            Scribe_Values.Look(ref AllowColonistRecreationInPrisonArea, "AllowColonistRecreationInPrisonArea", false);
             Scribe_Values.Look(ref BabyFeedingIsolation, "BabyFeedingIsolation", true);
 
             // Dictionary → parallel lists for Scribe

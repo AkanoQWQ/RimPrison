@@ -114,6 +114,7 @@
   <RimPrison.SuppPrisonBreakBlocked>越狱: 已阻止</RimPrison.SuppPrisonBreakBlocked>
   <RimPrison.ManagePrisonAreaWork>管理监狱区工作限制</RimPrison.ManagePrisonAreaWork>
   <RimPrison.ManagePrisonAreaWorkTitle>管理监狱区工作限制（勾选 = 禁止，不勾选 = 允许）</RimPrison.ManagePrisonAreaWorkTitle>
+  <RimPrison.AllowColonistRecreationInPrisonArea>允许殖民者在监狱区娱乐</RimPrison.AllowColonistRecreationInPrisonArea>
   <RimPrison.DoorAccessEnabled>启用囚犯门禁控制</RimPrison.DoorAccessEnabled>
 
   <RimPrison.FoodManagement>食物管理</RimPrison.FoodManagement>

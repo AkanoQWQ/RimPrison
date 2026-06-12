@@ -973,6 +973,19 @@ namespace RimPrison.UI
                 Find.WindowStack.Add(new Dialog_ManagePrisonAreaWork());
             }
 
+            y += 36f;
+            bool allowColonistRecreation = RimPrisonMod.Settings.AllowColonistRecreationInPrisonArea;
+            string recreationLabel = "RimPrison.AllowColonistRecreationInPrisonArea".Translate();
+            float checkboxSize = 24f;
+            float labelWidth = Mathf.Min(Text.CalcSize(recreationLabel).x + 4f, colW - checkboxSize - 8f);
+            Widgets.Label(new Rect(inner.x, y, labelWidth, 24f), recreationLabel);
+            Widgets.Checkbox(new Vector2(inner.x + labelWidth + 4f, y), ref allowColonistRecreation, checkboxSize);
+            if (allowColonistRecreation != RimPrisonMod.Settings.AllowColonistRecreationInPrisonArea)
+            {
+                RimPrisonMod.Settings.AllowColonistRecreationInPrisonArea = allowColonistRecreation;
+                RimPrisonMod.Settings.Write();
+            }
+
             // Right column — global status summary
             float rightCol = inner.x + colW + 12f;
             float rightY = inner.y + 32f;
