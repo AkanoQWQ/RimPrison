@@ -14,7 +14,8 @@ namespace RimPrison.Patches
             if (!__result) return;
             if (motherOrEgg is not Pawn mother) return;
             if (!pawn.RaceProps.Humanlike) return;
-            if (!pawn.DevelopmentalStage.Baby()) return;
+            // Fix bug : apply to both baby and newborn
+            if (!pawn.DevelopmentalStage.Newborn() && !pawn.DevelopmentalStage.Baby()) return;
 
             if (mother.IsPrisonerOfColony)
             {

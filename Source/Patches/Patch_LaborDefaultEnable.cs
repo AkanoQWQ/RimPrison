@@ -32,6 +32,7 @@ namespace RimPrison.Patches
 
             string groupName = pawn.DevelopmentalStage switch
             {
+                DevelopmentalStage stage when stage.Newborn() => "RimPrison.GroupBaby".Translate(),
                 DevelopmentalStage stage when stage.Baby()  => "RimPrison.GroupBaby".Translate(),
                 DevelopmentalStage stage when stage.Child()  => "RimPrison.GroupChild".Translate(),
                 _                                           => "RimPrison.GroupAdult".Translate()
