@@ -91,14 +91,17 @@ namespace RimPrison.Patches
             var parameters = method.GetParameters();
             switch (method.Name)
             {
+                case "PotentialWorkCellsGlobal":
                 case "PotentialWorkThingsGlobal":
                     return parameters.Length == 1
                         && parameters[0].ParameterType == typeof(Pawn);
+                case "HasJobOnCell":
                 case "HasJobOnThing":
                 case "JobOnThing":
                     return parameters.Length == 3
                         && parameters[0].ParameterType == typeof(Pawn)
-                        && parameters[1].ParameterType == typeof(Thing)
+                        && (parameters[1].ParameterType == typeof(Thing)
+                            || parameters[1].ParameterType == typeof(IntVec3))
                         && parameters[2].ParameterType == typeof(bool);
                 case "ShouldSkip":
                     return parameters.Length == 2
